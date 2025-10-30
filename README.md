@@ -43,6 +43,7 @@ The following environment variables can be set to configure the behavior of the 
 - `AUTO_DELETE_ENABLED`: Enable/disable auto deletion of old backups (optional, defaults to true).
 - `ENCRYPTION_ENABLED`: Enable encryption of the backup file before uploading (optional, defaults to false).
 - `ENCRYPTION_PASSWORD`: The password used to encrypt/decrypt the backup file (required if `ENCRYPTION_ENABLED` is true).
+- `POSTGRES_PORT`: The PostgreSQL port (optional, defaults to 5432).
 
 ## Usage
 You can use the Docker image available at Docker Hub:
@@ -68,6 +69,7 @@ FTP_PATH=your_ftp_path
 # Optional: FTP_SSL=true
 # Optional: BACKUP_RETENTION_DAYS=30
 # Optional: AUTO_DELETE_ENABLED=true
+# Optional: POSTGRES_PORT=5432
 ```
 
 Then run the container with the following command:
@@ -110,6 +112,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_PORT: ${POSTGRES_PORT} # Optional: PostgreSQL port (default: 5432)
       POSTGRES_HOST: db
       FTP_USER: ${FTP_USER}
       FTP_PASS: ${FTP_PASS}

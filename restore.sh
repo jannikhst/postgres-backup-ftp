@@ -108,9 +108,12 @@ fi
 
 echo "Database dropped and recreated successfully."
 
+# Default to 5432 if not set
+POSTGRES_PORT="${POSTGRES_PORT:-5432}"
+
 # Backup wiederherstellen
 echo "Restoring the backup..."
-psql -U $POSTGRES_USER -h $POSTGRES_HOST -d $POSTGRES_DB -f "$BACKUP_FILE"
+psql -U $POSTGRES_USER -h $POSTGRES_HOST -p $POSTGRES_PORT -d $POSTGRES_DB -f "$BACKUP_FILE"
 
 # Überprüfen, ob die Wiederherstellung erfolgreich war
 if [ $? -eq 0 ]; then

@@ -6,6 +6,7 @@ echo "Starting backup process..."
 BACKUP_DIR="/backups"
 TIMESTAMP=$(date +"%Y%m%d%H%M%S")
 BACKUP_FILE="$BACKUP_DIR/db_backup_$TIMESTAMP.sql"
+POSTGRES_PORT="${POSTGRES_PORT:-5432}"  # Default to 5432 if not set
 
 # Ensure the backup directory exists
 mkdir -p $BACKUP_DIR
@@ -15,7 +16,7 @@ export PGPASSWORD=$POSTGRES_PASSWORD
 
 # Perform the backup
 echo "Creating backup file..."
-pg_dump -U $POSTGRES_USER -h $POSTGRES_HOST -F p -b -v -f $BACKUP_FILE $POSTGRES_DB
+pg_dump -U $POSTGRES_USER -h $POSTGRES_HOST -p $POSTGRES_PORT -F p -b -v -f $BACKUP_FILE $POSTGRES_DB
 
 # Check if the backup was successful
 if [ $? -eq 0 ]; then
