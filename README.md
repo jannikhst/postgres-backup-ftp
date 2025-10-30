@@ -31,7 +31,7 @@ The following environment variables can be set to configure the behavior of the 
 
 - `POSTGRES_USER`: The PostgreSQL user (required).
 - `POSTGRES_PASSWORD`: The PostgreSQL password (required).
-- `POSTGRES_DB`: The PostgreSQL database name (required).
+- `POSTGRES_DB`: The PostgreSQL database name (required, comma-separated for multiple databases).
 - `POSTGRES_HOST`: The PostgreSQL host (required).
 - `FTP_USER`: The FTP user (required).
 - `FTP_PASS`: The FTP password (required).
@@ -59,6 +59,8 @@ To run the Docker container with your configuration, create an env.list file wit
 POSTGRES_USER=your_postgres_user
 POSTGRES_PASSWORD=your_postgres_password
 POSTGRES_DB=your_database_name
+# to backup multiple databases, use comma-separated values:
+# POSTGRES_DB=db1,db2,db3
 POSTGRES_HOST=your_postgres_host
 FTP_USER=your_ftp_user
 FTP_PASS=your_ftp_password
